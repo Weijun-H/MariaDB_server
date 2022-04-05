@@ -57,6 +57,15 @@ Warning	1287	'@@spider_udf_ct_bulk_insert_rows' is deprecated and will be remove
 SHOW VARIABLES LIKE "spider_udf_ct_bulk_insert_rows";
 Variable_name	Value
 spider_udf_ct_bulk_insert_rows	1
+# MDEV-28008 Deprecate spider_crd_mode and spider_sts_mode
+SET spider_crd_mode = 1;
+SHOW VARIABLES LIKE "spider_crd_mode";
+Variable_name	Value
+spider_crd_mode	1
+SET spider_sts_mode = 1;
+SHOW VARIABLES LIKE "spider_sts_mode";
+Variable_name	Value
+spider_sts_mode	1
 DROP DATABASE auto_test_local;
 for master_1
 for child2
