@@ -34,6 +34,13 @@ SHOW VARIABLES LIKE "spider_udf_ct_bulk_insert_interval";
 SET GLOBAL spider_udf_ct_bulk_insert_rows = 1;
 SHOW VARIABLES LIKE "spider_udf_ct_bulk_insert_rows";
 
+--echo # MDEV-28010 Deprecate spider_crd_type and spider_crd_weight
+SET spider_crd_type = 1;
+SHOW VARIABLES LIKE "spider_crd_type";
+
+SET spider_crd_weight = 1;
+SHOW VARIABLES LIKE "spider_crd_weight";
+
 DROP DATABASE auto_test_local;
 
 --disable_query_log
