@@ -2416,6 +2416,13 @@ int Field::set_default()
   if (default_value)
   {
     Query_arena backup_arena;
+    /*
+      TODO: this imposes memory leak until table flush when save_in_field()
+            does expr_arena allocation. F.ex. case from main.default:
+
+            CREATE TABLE t1 (a INT DEFAULT CONCAT('1 '));
+            INSERT INTO t1 VALUES (DEFAULT);
+    */
     table->in_use->set_n_backup_active_arena(table->expr_arena, &backup_arena);
     int rc= default_value->expr->save_in_field(this, 0);
     table->in_use->restore_active_arena(table->expr_arena, &backup_arena);
