@@ -647,9 +647,11 @@ void trx_roll_report_progress()
     });
 
     if (n_rows)
+    {
       service_manager_extend_timeout(INNODB_EXTEND_TIMEOUT_INTERVAL,
                                      "To roll back: %zu transactions, "
                                      UINT64PF " rows", n_trx, n_rows);
+    }
 
     sql_print_information("InnoDB: To roll back: %zu transactions, "
                           UINT64PF " rows", n_trx, n_rows);
