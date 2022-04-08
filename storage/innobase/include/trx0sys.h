@@ -459,10 +459,12 @@ public:
         lk->lock_shared();
         while (++i < k)
         {
-          for (trx_t* trx= array[i].first; trx; trx= trx->rw_trx_hash)
+          for (trx_t* trx= array[i].first; trx; )
           {
             ut_d(validate_element(trx));
+            trx_t *next= trx->rw_trx_hash;
             callback(*trx);
+            trx= next;
           }
         }
         lk->unlock_shared();
